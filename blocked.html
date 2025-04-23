@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>אתר חסום - פוקוס ישראלי</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 600px;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #34495e;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+            color: #e74c3c;
+        }
+        .info-box {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .pro-version {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            color: #2e7d32;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .blocked-sites {
+            margin-top: 20px;
+            text-align: right;
+            direction: rtl;
+        }
+        .blocked-sites ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+        .blocked-sites li {
+            margin: 5px 0;
+            color: #666;
+        }
+        .current-site {
+            background-color: #fff3e0;
+            border: 1px solid #ffe0b2;
+            color: #e65100;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🚫</div>
+        <h1>הישאר בפוקוס!</h1>
+        <p>האתר שביקשת לבקר בו חסום על ידי תוסף פוקוס ישראלי.</p>
+        <p>זכור שהמטרה היא לעזור לך להישאר מפוקס ולנצל את הזמן שלך בצורה יעילה יותר.</p>
+        
+        <div class="current-site" id="currentSite">
+            <!-- Will be filled by JavaScript -->
+        </div>
+        
+        <div class="blocked-sites">
+            <p>אתרים חסומים בגרסה החינמית:</p>
+            <ul>
+                <li>• Mako</li>
+                <li>• Walla</li>
+                <li>• Sport5</li>
+                <li>• YouTube</li>
+                <li>• Facebook</li>
+                <li>• Ynet</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <p>בגרסה החינמית, כדי לגשת לאתר זה:</p>
+            <p>1. לחץ על אייקון התוסף בשורת הכלים</p>
+            <p>2. בחר באפשרות "כיבוי זמני"</p>
+            <p>או</p>
+            <p>הסר את התוסף מהדפדפן</p>
+        </div>
+
+        <div class="pro-version">
+            <p>💡 מעוניין בשליטה מלאה?</p>
+            <p>בגרסת הפרו תוכל לבחור אילו אתרים לחסום ולהסיר חסימה בקלות!</p>
+        </div>
+    </div>
+
+    <script>
+        // Get the blocked URL from the query parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const blockedUrl = urlParams.get('url');
+        
+        // Format the URL for display
+        let displayUrl = blockedUrl;
+        if (displayUrl) {
+            displayUrl = displayUrl.replace('*://', '').replace('/*', '');
+            displayUrl = displayUrl.replace('www.', '');
+            displayUrl = displayUrl.split('.')[0];
+            displayUrl = displayUrl.charAt(0).toUpperCase() + displayUrl.slice(1);
+        }
+        
+        // Update the current site display
+        const currentSiteElement = document.getElementById('currentSite');
+        if (displayUrl) {
+            currentSiteElement.textContent = `אתר חסום: ${displayUrl}`;
+        }
+    </script>
+</body>
+</html> 
